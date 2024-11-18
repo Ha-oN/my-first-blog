@@ -1,7 +1,7 @@
 from .models import Equipement, Character
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import MoveForm
-from django.contrib import messages  # Importer messages pour afficher des messages d'erreur
+from django.contrib import messages
 
 def character_list(request):
     equipements = Equipement.objects.all()
@@ -22,7 +22,6 @@ def character_detail(request, id_character):
             nouveau_lieu = form.cleaned_data['lieu']
             ancien_lieu = get_object_or_404(Equipement, id_equip=character.lieu.id_equip)
 
-
             if nouveau_lieu.disponibilite == "occupé" and nouveau_lieu.id_equip !="sofa":
                 messages.error(request, f"{nouveau_lieu.id_equip} est occupé, impossible d'y aller.")
                 return render(request, 'animalerie/character_detail.html', {
@@ -30,8 +29,7 @@ def character_detail(request, id_character):
                     'lieu': character.lieu,
                     'form': form
                 })
-        
-            # Vérifications de disponibilité et de condition d'état
+                    
             if nouveau_lieu.id_equip == "sofa":
                 if character.etat != "fatigué":
                     messages.error(request, f"{character.id_character} n'est pas fatigué et ne peut pas aller sur le sofa.")
@@ -84,14 +82,11 @@ def character_detail(request, id_character):
                     ancien_lieu.disponibilite = "libre"
                     nouveau_lieu.disponibilite = "occupé"
 
-
-            # Mise à jour du personnage
             character.lieu = nouveau_lieu
             character.save()
             ancien_lieu.save()
             nouveau_lieu.save()
 
-            # Rediriger après succès
             return redirect('character_detail', id_character=id_character)
 
     return render(request, 'animalerie/character_detail.html', {
