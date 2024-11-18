@@ -1,0 +1,64 @@
+/* styles.css */
+
+/* Applique un fond léger et une couleur de texte */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centrer le titre de bienvenue */
+h1 {
+    text-align: center;
+    color: #3498db;
+    margin-top: 20px;
+}
+
+/* Style pour les lignes contenant les éléments */
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+/* Style de chaque carte de character ou equipement */
+.card {
+    margin: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    width: 180px;
+}
+
+/* Style des images */
+img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Style pour les descriptions sous chaque image */
+.card p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Ajout d'un peu d'espace autour de la page */
+body {
+    padding: 20px;
+}
+
+/* Style pour les titres des sections */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Garderie</title>
+        
+        <!-- Lien vers Bootstrap (si nécessaire) -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+        <!-- Lien vers votre fichier CSS personnalisé -->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1><a href="/">Garderie</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'character_list' %}">Liste des Characters</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-container">
+            {% block content %}
+            <!-- Contenu spécifique à chaque page -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Garderie - Tous droits réservés.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

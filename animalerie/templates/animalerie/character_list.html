@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garderie</title>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenue à la Garderie !</h1>
+    </header>
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 20px;">Liste des Characters</h2>
+
+        <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            {% for character in characters %}
+            <div class="card" style="width: 300px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center;">
+                <img src="{{ character.photo.url }}" alt="{{ character.id_character }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                <h3 style="margin: 15px 0;">{{ character.id_character }}</h3>
+                <p><strong>État :</strong> {{ character.etat }}</p>
+                <p><strong>Occupé dans :</strong> {{ character.lieu.id_equip }}</p>
+                <a href="{% url 'character_detail' id_character=character.id_character %}">{{ character.id_character }}</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">Liste des Équipements</h2>
+
+        <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            {% for equipement in equipements %}
+            <div class="card" style="width: 300px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center;">
+                {% if equipement.photo %}
+                <img src="{{ equipement.photo.url }}" alt="{{ equipement.id_equip }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                {% else %}
+                <img src="{% static 'images/default_equipement.jpg' %}" alt="Default image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                {% endif %}
+                <h3 style="margin: 15px 0;">{{ equipement.id_equip }}</h3>
+                <p><strong>Disponibilité :</strong> {{ equipement.disponibilite }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if not characters and not equipements %}
+        <p style="text-align: center; font-size: 1.2em; color: #7f8c8d;">Aucun character ou équipement disponible.</p>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Garderie - Tous droits réservés</p>
+    </footer>
+
+    <!-- Inclusion de JavaScript -->
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
