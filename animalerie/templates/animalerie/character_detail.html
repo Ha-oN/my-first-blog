@@ -3,12 +3,10 @@
 {% block content %}
 <div class="container mt-5">
 
-    <!-- Titre principal -->
     <div class="page-header text-center mb-4">
         <h1 class="display-4 text-info">{{ character.id_character }}</h1>
     </div>
 
-    <!-- Affichage de la photo du personnage -->
     <div class="text-center mb-4">
         {% if character.photo %}
         <img src="{{ character.photo.url }}" alt="{{ character.id_character }}" class="img-fluid rounded-circle" style="max-width: 250px;">
@@ -18,7 +16,6 @@
     </div>
 
 
-    <!-- Affichage des messages d'erreur -->
     {% if messages %}
     <div class="alert alert-danger text-center mb-4 p-3 rounded">
         {% for message in messages %}
@@ -27,14 +24,12 @@
     </div>
     {% endif %}
 
-    <!-- Formulaire de changement de lieu -->
     <div class="card p-4 shadow-lg border-0 rounded-lg">
         <h3 class="text-center mb-3 font-weight-bold">Changer le lieu du personnage</h3>
 
         <form method="POST" class="post-form">
             {% csrf_token %}
             
-            <!-- Affichage du formulaire de lieu -->
             <div class="mb-4">
                 <b>Lieu actuel : </b> <span class="text-muted">{{ character.lieu.id_equip }} - {{ character.lieu.type }}</span>
                 <b>Etat actuel : </b> <span class="text-muted">{{ character.etat }}</span>
@@ -47,7 +42,6 @@
                 </div>
             </div>
 
-            <!-- Bouton de soumission -->
             <div class="text-center">
                 <button type="submit" class="btn btn-info btn-lg px-5 py-3 rounded-pill">Valider le changement</button>
             </div>
